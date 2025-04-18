@@ -1,0 +1,67 @@
+/* Estilo adicional para melhorar o tema do Bootstrap */
+
+body {
+    min-height: 100vh; /* Garante que o corpo da página tenha altura mínima de 100% da tela visível */
+}
+
+.card {
+    border-radius: 0.5rem; /* Bordas levemente arredondadas nos cartões */
+    overflow: hidden; /* Impede que o conteúdo ultrapasse os limites do card */
+}
+
+.card-title {
+    font-weight: 600; /* Deixa o título do card em negrito */
+    color: var(--bs-primary-text-emphasis); /* Usa a cor principal do tema do Bootstrap */
+}
+
+.list-group-item {
+    transition: background-color 0.2s ease; /* Transição suave ao mudar o fundo do item da lista */
+}
+
+.list-group-item:hover {
+    background-color: var(--bs-secondary-bg); /* Altera o fundo ao passar o mouse */
+}
+
+.expense-value {
+    font-weight: 600; /* Valor dos gastos aparece em negrito */
+}
+
+#summary-message {
+    transition: opacity 0.3s ease; /* Transição suave de opacidade ao exibir/ocultar o resumo */
+}
+
+/* Dá um pouco mais de "respiro" no layout */
+.container {
+    max-width: 900px; /* Limita a largura máxima do container */
+}
+
+/* Efeito ao focar nos inputs e selects */
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25); /* Realce ao redor do campo com a cor primária */
+}
+
+/* Efeitos nos botões ao passar o mouse */
+.btn {
+    transition: all 0.3s ease; /* Transições suaves em todos os estilos do botão */
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px); /* Move o botão levemente para cima ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor */
+}
+
+.btn-success:hover {
+    transform: translateY(-2px); /* Mesmo efeito de elevação para o botão de sucesso */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem; /* Reduz tamanho do título em telas pequenas */
+    }
+    
+    h2 {
+        font-size: 1.5rem; /* Reduz subtítulo também */
+    }
+}

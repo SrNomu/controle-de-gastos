@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="dark"> <!-- Define o idioma da página como português e aplica o tema escuro do Bootstrap -->
+<head>
+    <meta charset="UTF-8"> <!-- Suporte a caracteres especiais, como acentos -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsividade para diferentes tamanhos de tela -->
+    <title>Controle de Gastos Semanais</title> <!-- Título da aba do navegador -->
+
+    <!-- Estilo Bootstrap (tema escuro personalizado do Replit) -->
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+
+    <!-- Ícones da biblioteca Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Estilo CSS personalizado (você pode definir seu próprio visual no arquivo custom.css) -->
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+    <div class="container py-5"> <!-- Container central com padding vertical -->
+        <!-- Título e descrição -->
+        <div class="row mb-4">
+            <div class="col-md-8 mx-auto text-center">
+                <h1 class="mb-3">Controle de Gastos Semanais</h1>
+                <p class="lead">
+                    Insira seus gastos diários para acompanhar suas finanças e planejar melhor seu orçamento.
+                </p>
+            </div>
+        </div>
+
+        <!-- Área principal -->
+        <div class="row">
+            <div class="col-md-6 mx-auto"> <!-- Centraliza a coluna no meio da tela -->
+
+                <!-- Cartão com formulário de entrada de dados -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title mb-4">Gastos Diários</h2>
+
+                        <!-- Formulário de gastos -->
+                        <form id="expense-form">
+                            <!-- Seleção do dia da semana -->
+                            <div class="mb-3">
+                                <label for="day-selector" class="form-label">Selecione o dia:</label>
+                                <select class="form-select" id="day-selector">
+                                    <!-- Cada opção representa um dia da semana -->
+                                    <option value="0">Segunda-feira</option>
+                                    <option value="1">Terça-feira</option>
+                                    <option value="2">Quarta-feira</option>
+                                    <option value="3">Quinta-feira</option>
+                                    <option value="4">Sexta-feira</option>
+                                    <option value="5">Sábado</option>
+                                    <option value="6">Domingo</option>
+                                </select>
+                            </div>
+
+                            <!-- Entrada do valor do gasto -->
+                            <div class="mb-3">
+                                <label for="expense-amount" class="form-label">Valor do gasto (R$):</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">R$</span>
+                                    <input type="number" class="form-control" id="expense-amount" step="0.01" min="0" placeholder="0.00" required>
+                                </div>
+                            </div>
+
+                            <!-- Botão para adicionar o gasto -->
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus-circle me-2"></i>Adicionar Gasto
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Cartão de resumo dos gastos semanais -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title mb-4">Visão Geral da Semana</h2>
+
+                        <!-- Lista com os gastos por dia -->
+                        <ul class="list-group list-group-flush mb-4" id="daily-expenses-list">
+                            <!-- Cada item representa um dia da semana e seu gasto total -->
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>Segunda-feira</span>
+                                <span class="expense-value">R$ 0,00</span>
+                            </li>
+                            <!-- (repete para os outros dias...) -->
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>Terça-feira</span>
+                                <span class="expense-value">R$ 0,00</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>Quarta-feira</span>
+                                <span class="expense-value">R$ 0,00</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>Quinta-feira</span>
+                                <span class="expense-value">R$ 0,00</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>Sexta-feira</span>
+                                <span class="expense-value">R$ 0,00</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>Sábado</span>
+                                <span class="expense-value">R$ 0,00</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>Domingo</span>
+                                <span class="expense-value">R$ 0,00</span>
+                            </li>
+                        </ul>
+
+                        <!-- Exibição do total de gastos -->
+                        <div class="card bg-light text-dark mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Total da Semana:</h5>
+                                    <h5 class="mb-0" id="total-expenses">R$ 0,00</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exibição da média de gastos -->
+                        <div class="card bg-light text-dark">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Média Diária:</h5>
+                                    <h5 class="mb-0" id="average-expenses">R$ 0,00</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mensagem de resumo após o cálculo -->
+                <div class="mt-4 text-center d-none" id="summary-message"> <!-- Inicialmente escondido com d-none -->
+                    <div class="alert alert-info p-4">
+                        <h4 class="alert-heading">Resumo Financeiro da Semana</h4>
+                        <p>Você gastou um total de <strong id="summary-total">R$ 0,00</strong> esta semana.</p>
+                        <p>Sua média diária de gastos foi de <strong id="summary-average">R$ 0,00</strong>.</p>
+                        <hr>
+                        <p class="mb-0" id="financial-advice"></p> <!-- Espaço para conselho financeiro gerado -->
+                    </div>
+                </div>
+
+                <!-- Botões de ação -->
+                <div class="mt-4 text-center">
+                    <button id="reset-button" class="btn btn-outline-danger">
+                        <i class="fas fa-trash-alt me-2"></i>Reiniciar Dados
+                    </button>
+                    <button id="calculate-button" class="btn btn-success ms-2">
+                        <i class="fas fa-calculator me-2"></i>Calcular Resultados
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts JavaScript no fim do body (boa prática) -->
+
+    <!-- Script do Bootstrap com Popper (necessário para componentes como dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script para lidar com a lógica da página (você precisa implementar ou corrigir o JS aqui) -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script> <!-- Este está configurado para Flask -->
+    <script src="script.js"></script> <!-- Esse é o seu JS principal se estiver rodando estático -->
+</body>
+</html>
